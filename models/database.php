@@ -12,6 +12,7 @@ function connect_db()
         die("Lỗi kết nối đến cơ sở dữ liệu: " . $e->getMessage());
     }
 }
+
 function user_exists($email)
 {
     // Sử dụng PDO Prepared Statement để gắn tham số vào câu lệnh SQL
@@ -45,8 +46,8 @@ function get_user_by_id($user_id)
 function add_user($data)
 {
 
+    $pdo = connect_db();
     try {
-        $pdo = connect_db();
         // Chuẩn bị truy vấn SQL INSERT INTO
         $sql = "INSERT INTO khach_hang (name, email, pass, phone, address, time) VALUES (:name, :email, :pass, :phone, :address, :time)";
         // Liên kết các tham số trong truy vấn SQL với giá trị từ mảng $data
@@ -71,6 +72,66 @@ function add_user($data)
         echo "Lỗi: " . $e->getMessage();
     }
 }
+
+function update_user($data)
+{
+    $pdo = connect_db();
+    try {
+        // Chuẩn bị truy vấn SQL UPDATE
+        $sql = "UPDATE khach_hang SET name = :name, user_img = :user_img, phone = :phone, address = :address WHERE user_id = :user_id";
+        // Liên kết các tham số trong truy vấn SQL với giá trị từ mảng $data
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':user_id', $data['user_id']); // Đảm bảo rằng bạn cung cấp ID để xác định bản ghi cần cập nhật
+        $stmt->bindParam(':name', $data['name']);
+        $stmt->bindParam(':user_img', $data['user_img']);
+        $stmt->bindParam(':phone', $data['phone']);
+        $stmt->bindParam(':address', $data['address']);
+
+        // Thực thi truy vấn
+        $stmt->execute();
+
+        // Kiểm tra xem truy vấn đã thành công hay không
+        if ($stmt->rowCount() > 0) {
+            echo "Dữ liệu đã được cập nhật thành công trong bảng khách hàng.";
+        } else {
+            echo "Không có bản ghi nào được cập nhật trong bảng khách hàng.";
+        }
+    } catch (PDOException $e) {
+        echo "Lỗi: " . $e->getMessage();
+    }
+}
+
+
+function update_password($user_id, $old_password, $new_password)
+{
+    $pdo = connect_db();
+    try {
+
+        // Kiểm tra mật khẩu cũ trước khi cập nhật
+        $stmt_check = $pdo->prepare("SELECT user_id FROM khach_hang WHERE user_id = :user_id AND pass = :old_password");
+        $stmt_check->bindParam(':user_id', $user_id);
+        $stmt_check->bindParam(':old_password', $old_password);
+        $stmt_check->execute();
+
+        if ($stmt_check->rowCount() > 0) {
+            // Mật khẩu cũ đúng, tiếp tục cập nhật mật khẩu mới
+            $stmt_update = $pdo->prepare("UPDATE khach_hang SET pass = :new_password WHERE user_id = :user_id");
+            $stmt_update->bindParam(':new_password', $new_password);
+            $stmt_update->bindParam(':user_id', $user_id);
+            $stmt_update->execute();
+
+            if ($stmt_update->rowCount() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    } catch (PDOException $e) {
+        echo "Lỗi: " . $e->getMessage();
+    }
+}
+
+
 
 global $error;
 function check_login($email, $password)
@@ -163,6 +224,8 @@ function get_list_order()
     }
 }
 
+
+
 // $user = get_user_by_id(3);
 
 // print_r($user);
@@ -184,14 +247,14 @@ function get_total_order()
 }
 
 // Biến toàn cục
-global $list_bill;
+global $list_order;
 $list_order = get_list_order();
 
 function get_orders_by_user_id($user_id)
 {
     $pdo = connect_db();
     try {
-        $stmt = $pdo->prepare("SELECT * FROM `don_hang` WHERE `user_id` = ?");
+        $stmt = $pdo->prepare("SELECT * FROM `don_hang` WHERE `user_id` = ? ORDER BY `bill_time` DESC");
         $stmt->execute([$user_id]);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -200,12 +263,12 @@ function get_orders_by_user_id($user_id)
     }
 }
 
-function get_orders_and_detail_by_user_id($user_id)
+function get_orders_and_detail_by_user_id($user_id, $order_id)
 {
     $pdo = connect_db();
     try {
-        $stmt = $pdo->prepare("SELECT * FROM `don_hang` JOIN `chi_tiet_don_hang` on  `don_hang`.order_id = `chi_tiet_don_hang`.order_id WHERE `user_id` = ?");
-        $stmt->execute([$user_id]);
+        $stmt = $pdo->prepare("SELECT * FROM `don_hang` JOIN `chi_tiet_don_hang` on  `don_hang`.order_id = `chi_tiet_don_hang`.order_id WHERE `user_id` = ? AND `don_hang`.order_id = ?");
+        $stmt->execute([$user_id, $order_id]);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     } catch (PDOException $e) {
@@ -215,6 +278,6 @@ function get_orders_and_detail_by_user_id($user_id)
 if (isset($_SESSION['user_id'])) {
     global $list_order_user;
     $list_order_user = get_orders_by_user_id($_SESSION['user_id']);
-    global $list_order_and_detail;
-    $list_order_and_detail = get_orders_and_detail_by_user_id($_SESSION['user_id']);
+    // global $list_order_and_detail;
+    // $list_order_and_detail = get_orders_and_detail_by_user_id($_SESSION['user_id']);
 }

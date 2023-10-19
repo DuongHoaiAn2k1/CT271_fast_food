@@ -1,7 +1,7 @@
 <?php
 require './inc/header.php';
 $order_id = $_GET['order_id'];
-$list_detail = get_list_order_and_detail_by_id($_GET['user_id']);
+$list_detail = get_list_order_and_detail_by_id($_GET['user_id'], $order_id);
 // show_array($list_detail);
 $order = get_order_by_id($_GET['order_id']);
 $user = get_user_by_id($order_id);

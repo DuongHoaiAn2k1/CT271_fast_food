@@ -8,11 +8,11 @@ require "inc/header.php";
 
 <link rel="stylesheet" href="public/css/user.css">
 <div class="container-fluid">
-  <section class="vh-100" style="background-color: #eee">
+  <section class="vh-100" style="background-color: #fff">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-lg-12 col-xl-11">
-          <div class="card text-black" style="border-radius: 25px">
+          <div class="card text-black" style="border: none; ">
             <div class="card-body p-md-5">
               <div class="row justify-content-center">
                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
@@ -37,10 +37,17 @@ require "inc/header.php";
                       <label class="form-label" for="form3Example4c"><i class="icon-register fa fa-key" aria-hidden="true"></i></label>
 
                       <div class="form-outline flex-fill mb-0 contain-input">
-                        <input type="password" name="password" id="form3Example4c" class="form-control" placeholder="Vui lòng nhập mật khẩu" />
+                        <input type="password" name="password" id="form3Example4c" value="<?php if (isset($_COOKIE['password'])) echo $_COOKIE['password']; ?>" class="form-control" placeholder="Vui lòng nhập mật khẩu" />
                       </div>
                     </div>
                     <?php echo form_error('password'); ?>
+
+                    <div class="d-flex flex-row align-items-center" style="margin-left: 14%;">
+                      <input name="remember_me" class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" <?php if (isset($_COOKIE['remember_me'])) echo "checked" ?>>
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Ghi nhớ đăng nhập
+                      </label>
+                    </div>
 
                     <div class="d-flex flex-row align-items-center mb-4" style="margin-left: 8%;">
                       <label class="form-label" for="form3Example4cd">

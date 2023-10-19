@@ -1,4 +1,7 @@
 <!-- Footer -->
+<?php
+$category = get_list_category();
+?>
 <footer class="bg-dark text-center text-white">
     <!-- Grid container -->
     <div class="container p-4">
@@ -25,48 +28,13 @@
         <!-- Section: Social media -->
 
         <!-- Section: Form -->
-        <section class="">
-            <form action="">
-                <!--Grid row-->
-                <div class="row d-flex justify-content-center">
-                    <!--Grid column-->
-                    <div class="col-auto">
-                        <p class="pt-2">
-                            <strong>Sign up for our newsletter</strong>
-                        </p>
-                    </div>
-                    <!--Grid column-->
 
-                    <!--Grid column-->
-                    <div class="col-md-5 col-12">
-                        <!-- Email input -->
-                        <div class="form-outline form-white mb-4">
-                            <input type="email" id="form5Example21" class="form-control" />
-                            <label class="form-label" for="form5Example21">Email address</label>
-                        </div>
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-auto">
-                        <!-- Submit button -->
-                        <button type="submit" class="btn btn-outline-light mb-4">
-                            Subscribe
-                        </button>
-                    </div>
-                    <!--Grid column-->
-                </div>
-                <!--Grid row-->
-            </form>
-        </section>
         <!-- Section: Form -->
 
         <!-- Section: Text -->
         <section class="mb-4">
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-                repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-                eum harum corrupti dicta, aliquam sequi voluptate quas.
+                Tận hưởng hương vị vượt thời gian tại cửa hàng thức ăn nhanh của chúng tôi.
             </p>
         </section>
         <!-- Section: Text -->
@@ -76,21 +44,56 @@
             <!--Grid row-->
             <div class="row">
                 <!--Grid column-->
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Links</h5>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0 contain-footer">
+                    <h5 style="text-align: left;" class="text-uppercase">Danh mục món ăn</h5>
 
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <a href="#!" class="text-white">Link 1</a>
+                    <ul style="text-align: left;" class="list-unstyled mb-0 ">
+                        <?php
+                        foreach ($category as $item) {
+                        ?>
+                            <li style="text-align: left;">
+                                <a href="?mod=product&category_id=<?php echo $item['category_id'] ?>" style=" color: #ABABAB !important; " href="#!" class="text-white"><?php echo $item['category_name'] ?></a>
+                            </li>
+                        <?php
+                        }
+
+                        ?>
+
+                        <!-- <li style="text-align: left;">
+                            <a style="text-decoration: none; color: #ABABAB !important; " href="#!" class="text-white">COMBO NHÓM</a>
                         </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 2</a>
+                        <li style="text-align: left;">
+                            <a style="text-decoration: none; color: #ABABAB !important; " href="#!" class="text-white">GÀ GÁN - GÀ QUAY</a>
                         </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 3</a>
+                        <li style="text-align: left;">
+                            <a style="text-decoration: none; color: #ABABAB !important; " href="#!" class="text-white">BURGER - CƠM - MỲ Ý</a>
                         </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 4</a>
+                        <li style="text-align: left;">
+                            <a style="text-decoration: none; color: #ABABAB !important; " href="#!" class="text-white">THỨC UỐNG & TRÁN MIỆNG</a>
+                        </li> -->
+                    </ul>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 style="text-align: left;" class="text-uppercase">Châm ngôn</h5>
+
+                    <ul style="text-align: left;" class="list-unstyled mb-0 ">
+                        <li style="text-align: left;">
+                            <a style="text-decoration: none; color: #ABABAB !important; " href="#!" class="text-white">Khám phá hương vị nhanh chóng!</a>
+                        </li>
+                        <li style="text-align: left;">
+                            <a style="text-decoration: none; color: #ABABAB !important; " href="#!" class="text-white">Thỏa lòng bất cứ lúc nào, bất cứ nơi đâu.</a>
+                        </li>
+                        <li style="text-align: left;">
+                            <a style="text-decoration: none; color: #ABABAB !important; " href="#!" class="text-white">Chất lượng đỉnh cao, thời gian phục vụ nhanh chóng.</a>
+                        </li>
+                        <li style="text-align: left;">
+                            <a style="text-decoration: none; color: #ABABAB !important; " href="#!" class="text-white">Mang hạnh phúc vào từng miếng thức ăn.</a>
+                        </li>
+                        <li style="text-align: left;">
+                            <a style="text-decoration: none; color: #ABABAB !important; " href="#!" class="text-white">Tạo nên hương vị đặc biệt mỗi ngày.</a>
                         </li>
                     </ul>
                 </div>
@@ -98,63 +101,26 @@
 
                 <!--Grid column-->
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Links</h5>
+                    <h5 style="text-align: left;" class="text-uppercase">Liên hệ</h5>
 
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <a href="#!" class="text-white">Link 1</a>
+                    <ul style="text-align: left;" class="list-unstyled mb-0 ">
+                        <li style="text-align: left;">
+                            <a style="text-decoration: none; color: #ABABAB !important; " href="#!" class="text-white">Liên hệ cửa hàng</a>
                         </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 2</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 4</a>
-                        </li>
+
                     </ul>
                 </div>
                 <!--Grid column-->
 
                 <!--Grid column-->
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Links</h5>
+                    <h5 style="text-align: left;" class="text-uppercase">Lời cảm ơn</h5>
 
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <a href="#!" class="text-white">Link 1</a>
+                    <ul style="text-align: left;" class="list-unstyled mb-0 ">
+                        <li style="text-align: left;">
+                            <a style="text-decoration: none; color: #ABABAB !important; " href="#!" class="text-white">Cảm ơn các bạn đã tin tưởng và lựa chọn sản phẩm của cửa hàng!</a>
                         </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 2</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 4</a>
-                        </li>
-                    </ul>
-                </div>
-                <!--Grid column-->
 
-                <!--Grid column-->
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Links</h5>
-
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <a href="#!" class="text-white">Link 1</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 2</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 4</a>
-                        </li>
                     </ul>
                 </div>
                 <!--Grid column-->
@@ -167,8 +133,8 @@
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2020 Copyright:
-        <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        © 2023 Tác giả:
+        <span>Dương Hoài Ân - B2014552</span>
     </div>
     <!-- Copyright -->
 </footer>

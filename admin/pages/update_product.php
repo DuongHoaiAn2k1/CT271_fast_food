@@ -19,6 +19,7 @@ if (isset($_POST['btn-update'])) {
     $product_name = $_POST['product_name'];
     $short_desc = $_POST['short-desc'];
     $price = $_POST['price'];
+    $sold_out = $_POST['sold_out'];
     $category = $_POST['category'];
     $time_create = date("y/m/d h:m:s");
 
@@ -32,12 +33,13 @@ if (isset($_POST['btn-update'])) {
     }
 
     // Update data in the database using a prepared statement
-    $stmt = $pdo->prepare("UPDATE `san_pham` SET `product_name` = :product_name, `short_des` = :short_desc, `price` = :price, `img` = :img, `category_id` = :category_id, `time_create` = :time_create WHERE product_id = :product_id");
+    $stmt = $pdo->prepare("UPDATE `san_pham` SET `product_name` = :product_name, `short_des` = :short_desc, `price` = :price, `img` = :img, `sold_out` = :sold_out, `category_id` = :category_id, `time_create` = :time_create WHERE product_id = :product_id");
 
     $stmt->bindParam(':product_name', $product_name);
     $stmt->bindParam(':short_desc', $short_desc);
     $stmt->bindParam(':price', $price);
     $stmt->bindParam(':img', $upload_file);
+    $stmt->bindParam(':sold_out', $sold_out);
     $stmt->bindParam(':category_id', $category);
     $stmt->bindParam(':time_create', $time_create);
     $stmt->bindParam(':product_id', $product['product_id']); // Thêm tham số cho ID sản phẩm
@@ -66,7 +68,7 @@ require './inc/header.php';
         <div id="content" class="fl-right">
             <div class="section" id="title-page">
                 <div class="clearfix">
-                    <h3 id="index" class="fl-left">Thêm sản phẩm</h3>
+                    <h3 id="index" class="fl-left">Cập nhật sản phẩm</h3>
                 </div>
             </div>
             <div class="section" id="detail-page">
@@ -84,6 +86,12 @@ require './inc/header.php';
                             <input type="file" name="file" id="upload-thumb" onchange="previewImage()">
                             <img id="image-preview" src="<?php echo $product['img'] ?>">
                         </div>
+                        <label>Trạng thái sản phẩm</label>
+                        <select name="sold_out">
+                            <option value="">-- Chọn trạng thái --</option>
+                            <option value="0" <?php if ($product['sold_out'] === 0) echo "selected" ?>>Còn hàng</option>
+                            <option value="1" <?php if ($product['sold_out'] === 1) echo "selected" ?>>Hết hàng</option>
+                        </select>
                         <label>Danh mục sản phẩm</label>
                         <select name="category">
                             <option value="">-- Chọn danh mục --</option>

@@ -15,7 +15,7 @@ if (isset($_POST['btn-submit'])) {
         $upload_file = $upload_dir . $_FILES['file']['name'];
         move_uploaded_file($_FILES['file']['tmp_name'], $upload_file);
     } else {
-        $upload_file = $product['img'];
+        $upload_file = $category['img_cat'];
     }
 
     $time_create = date("y/m/d h:m:s");
@@ -59,7 +59,7 @@ require './inc/header.php';
         <div id="content" class="fl-right">
             <div class="section" id="title-page">
                 <div class="clearfix">
-                    <h3 id="index" class="fl-left">Thêm mới danh mục</h3>
+                    <h3 id="index" class="fl-left">Cập nhật danh mục</h3>
                 </div>
             </div>
             <div class="section" id="detail-page">
@@ -72,7 +72,7 @@ require './inc/header.php';
                         <label>Hình ảnh</label>
                         <div id="uploadFile">
                             <input type="file" name="file" id="upload-thumb" onchange="previewImage()">
-                            <img id="image-preview" src="<?php echo $category['img'] ?>">
+                            <img id="image-preview" src="<?php echo $category['img_cat'] ?>">
                         </div>
 
                         <button type="submit" name="btn-submit" id="btn-submit">Cập nhật</button>

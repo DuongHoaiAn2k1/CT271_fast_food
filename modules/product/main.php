@@ -88,6 +88,11 @@ require "inc/header.php";
     .card:focus::after {
         transform: scale3d(1, 1, 1);
     }
+
+    .unclickable {
+        cursor: not-allowed;
+        pointer-events: none;
+    }
 </style>
 <div id="head-main-page-product" class="container-fluid mt-5">
     <!-- Pills navs -->
@@ -131,9 +136,10 @@ require "inc/header.php";
                             <div class="col-md-3 col-sm-6 mt-3">
                                 <div class="card card-block">
                                     <img class="img-menu" src="admin/<?php echo $item['img'] ?>" alt="Photo of sunset">
-                                    <h4 class="card-title mt-3 mb-3 d-flex justify-content-between"><?php echo $item['product_name'] ?> <span class="contain-price"><?php echo $item['price'] ?></h4>
+                                    <h4 class="card-title mt-3 mb-3 d-flex justify-content-between"><?php echo $item['product_name'] ?> <span class="contain-price"><?php echo currency_format($item['price']) ?></h4>
                                     <input type="text" style="display: none;" name="product_id" value="<?php echo $item['product_id'] ?>">
-                                    <a href="?mod=cart&act=cart&product_id=<?php echo $item['product_id'] ?>" name="add-cart" type="button" class="btn btn-danger btn-rounded" style="background-color: #a23232;"><span class="add-cart">Thêm</span></a>
+                                    <a id="" href="?mod=cart&act=cart&product_id=<?php echo $item['product_id'] ?>" name="add-cart" type="button" class="btn btn-danger btn-rounded <?php if ($item['sold_out']) echo 'unclickable'; ?>" style="background-color: #a23232;"><span class="add-cart"><?php if ($item['sold_out']) echo 'Hết hàng';
+                                                                                                                                                                                                                                                                                                    else echo 'Thêm' ?></span></a>
                                 </div>
                             </div>
                         <?php
@@ -161,6 +167,11 @@ require "inc/header.php";
                 linkElement.click();
             }
         }
+        document.querySelector(".unclickable").addEventListener("click", function(event) {
+            event.preventDefault();
+        });
+
+
     });
 </script>
 

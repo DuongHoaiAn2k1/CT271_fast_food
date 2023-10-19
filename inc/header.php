@@ -111,10 +111,10 @@ $list_category = get_list_category();
               <a class="nav-link" href="?mod=product">THỰC ĐƠN</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">GIỚI THIỆU</a>
+              <a class="nav-link" href="?mod=intro&act=main">GIỚI THIỆU</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">LIÊN HỆ</a>
+              <a class="nav-link" href="?mod=contact">LIÊN HỆ</a>
             </li>
           </ul>
           <!-- Left links -->
@@ -138,7 +138,8 @@ $list_category = get_list_category();
           </div>
           <div class="dropdown ms-2">
             <!-- <i style="color: black;" id="menu-icon " class="fa fa-bars menu-icon" aria-hidden="true"></i> -->
-            <button style="border: none; background: none;" id="menu-button"><i style="color: black;" class="fa fa-bars menu-icon" aria-hidden="true"></i></button>
+            <button style="border: none; background: none; box-shadow: none;" id="menu-button" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i style="color: black;" class="fa fa-bars menu-icon" aria-hidden="true"></i></button>
+            <!-- <button style="border: none; background: none;" id="menu-button"><i style="color: black;" class="fa fa-bars menu-icon" aria-hidden="true"></i></button> -->
           </div>
 
         </div>
@@ -150,19 +151,72 @@ $list_category = get_list_category();
     <!-- Navbar -->
   </header>
 
-  <div class="sidebar" id="sidebar">
+  <!-- <div class="sidebar" id="sidebar">
     <span class="close-button" id="close-button">+</span>
     <div class="contain-box">
       <div class="menu-header">
         <h5>DANH MỤC MÓN ĂN</h5>
       </div>
       <ul class="menu-list">
-        <?php foreach ($list_category as $item) {
+        <?php //foreach ($list_category as $item) {
         ?>
-          <li><a href="?mod=product&category_id=<?php echo $item['category_id'] ?>" style="margin-bottom: 4px;" href="#"><?php echo $item['category_name'] ?> ></a></li>
+          <li><a href="?mod=product&category_id=<?php //echo $item['category_id'] 
+                                                ?>" style="margin-bottom: 4px;" href="#"><?php //echo $item['category_name'] 
+                                                                                          ?> ></a></li>
         <?php
-        } ?>
+        //} 
+        ?>
 
       </ul>
     </div>
+  </div> -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header menu-header">
+      <h5>DANH MỤC MÓN ĂN</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="">
+      <ul class="menu-list" style="margin-top: -10px;margin-left: -10px;">
+        <?php foreach ($list_category as $item) {
+        ?>
+          <li><a href="?mod=product&category_id=<?php echo $item['category_id']
+                                                ?>" style="margin-bottom: 4px; color: black; text-decoration: none;" href="#"><?php echo $item['category_name']
+                                                                                                                              ?> ></a></li>
+        <?php
+        }
+        ?>
+      </ul>
+    </div>
+    <div class="offcanvas-header menu-header">
+      <h5>CHÂM NGÔN</h5>
+    </div>
+    <div>
+      <ul style="margin-top: -10px;margin-left: -10px;">
+        <li>Khám phá hương vị nhanh chóng!</li>
+        <li>Thỏa lòng bất cứ lúc nào, bất cứ nơi đâu.</li>
+        <li>Chất lượng đỉnh cao, thời gian phục vụ nhanh chóng.</li>
+        <li>Mang hạnh phúc vào từng miếng thức ăn.</li>
+        <li>Tạo nên hương vị đặc biệt mỗi ngày.</li>
+      </ul>
+    </div>
+
+    <div class="offcanvas-header menu-header">
+      <h5>LIÊN HỆ</h5>
+    </div>
+    <div>
+      <ul class="menu-list" style="margin-top: -10px;margin-left: -10px;">
+        <li style="list-style-type: none;"><a style="color: black; text-decoration: none;" href="?mod=contact&act=main">Liên hệ với chúng tôi</a></li>
+      </ul>
+    </div>
+    <div class="offcanvas-header menu-header">
+      <h5>LỜI CẢM ƠN</h5>
+    </div>
+    <div>
+      <ul style="margin-top: -10px;margin-left: -10px;">
+        <li style="list-style-type: none;">Cảm ơn các bạn đã tin tưởng và lựa chọn sản phẩm của cửa hàng!</li>
+      </ul>
+    </div>
   </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

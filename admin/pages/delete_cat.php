@@ -5,7 +5,7 @@ $stmt = $pdo->prepare("DELETE FROM `danh_muc` WHERE `category_id` = ?");
 
 try {
     $stmt->execute([$category_id]);
-    echo "<script>alert('Xóa sản phẩm thành công'); setTimeout(()=>{window.location.href='?page=list_category';}, 500)</script>";
+    echo "<script>alert('Xóa danh mục thành công'); setTimeout(()=>{window.location.href='?page=list_category';}, 500)</script>";
 } catch (PDOException $e) {
     echo "Loi khi xoa" . $e->getMessage();
 }

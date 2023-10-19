@@ -65,7 +65,6 @@
                                                                 ?></h3>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="?page=info_account" title="Thông tin cá nhân">Thông tin tài khoản</a></li>
                             <li><a href="?page=logout" title="Thoát">Thoát</a></li>
                         </ul>
                     </div>

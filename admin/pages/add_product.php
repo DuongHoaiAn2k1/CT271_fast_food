@@ -49,6 +49,7 @@ if (isset($_POST['btn-submit'])) {
 
 
 ?>
+<?php require "./inc/header.php" ?>
 
 
 <div id="main-content-wp" class="add-cat-page">

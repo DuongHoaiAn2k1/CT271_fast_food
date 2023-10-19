@@ -2,7 +2,8 @@
 require "./inc/header.php";
 
 $user = get_user_by_id($_SESSION['user_id']);
-$_SESSION['time_create_bill'] = date("y/m/d h:m:s");
+$now = new DateTime();
+$_SESSION['time_create_bill'] = $now->format('Y/m/d H:i:s');
 
 ?>
 
@@ -73,7 +74,7 @@ $_SESSION['time_create_bill'] = date("y/m/d h:m:s");
                                             <td><?php echo $item['product_name'] ?></td>
                                             <td> &emsp;&ensp;<?php echo $item['qty'] ?></td>
                                             <td><?php echo $item['price'] ?></td>
-                                            <td><?php echo $item['sub_total'] ?></td>
+                                            <td><?php echo currency_format($item['sub_total']) ?></td>
                                         </tr>
                                 <?php
                                     }
@@ -94,7 +95,7 @@ $_SESSION['time_create_bill'] = date("y/m/d h:m:s");
                             <ul class="list-unstyled">
 
                             </ul>
-                            <p class="text-black float-start"><span class="text-black me-3"> TỔNG TIỀN:</span><span style="font-size: 25px;"><?php echo isset($_SESSION['cart']['info']) ? $_SESSION['cart']['info']['total_money'] : '' ?></span></p>
+                            <p class="text-black float-start"><span class="text-black me-3"> TỔNG TIỀN:</span><span style="font-size: 25px;"><?php echo currency_format(isset($_SESSION['cart']['info']) ? $_SESSION['cart']['info']['total_money'] : '') ?></span></p>
                         </div>
                     </div>
                     <hr>
@@ -118,9 +119,9 @@ $_SESSION['time_create_bill'] = date("y/m/d h:m:s");
 <?php
 // show_array($list_order);
 
-show_array($list_order_user);
-echo "--------";
-show_array($_SESSION['cart']);
+// show_array($list_order_user);
+// echo "--------";
+// show_array($_SESSION['cart']);
 
 require "./inc/footer.php";
 ?>

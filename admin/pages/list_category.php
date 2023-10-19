@@ -19,7 +19,6 @@ require './inc/header.php';
                         <table class="table list-table-wp">
                             <thead>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
                                     <td><span class="thead-text">STT</span></td>
                                     <td><span class="thead-text">Hình ảnh</span></td>
                                     <td><span class="thead-text">Tiêu đề</span></td>
@@ -34,7 +33,6 @@ require './inc/header.php';
                                     $i++;
                                 ?>
                                     <tr>
-                                        <td><input type="checkbox" name="checkItem" class="checkItem"></td>
                                         <td><span class="tbody-text"><?php echo $i; ?></h3></span>
                                         <td>
                                             <div class="tbody-thumb">
@@ -43,10 +41,10 @@ require './inc/header.php';
                                         </td>
                                         <td class="clearfix">
                                             <div class="tb-title fl-left">
-                                                <a href="" title=""><?php echo $category['category_name'] ?></a>
+                                                <?php echo $category['category_name'] ?>
                                             </div>
                                         </td>
-                                        <td><span class="tbody-text">Admin</span></td>
+                                        <td><span class="tbody-text">&emsp;Admin</span></td>
                                         <td>
                                             <span class="tbody-text"><?php echo $category['time_create_cat'] ?></span>
                                             <ul class="list-operation fl-right">
@@ -58,43 +56,12 @@ require './inc/header.php';
                                 <?php
                                 } ?>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
-                                    <td><span class="tfoot-text">STT</span></td>
-                                    <td><span class="thead-text">Hình ảnh</span></td>
-                                    <td><span class="tfoot-text-text">Tiêu đề</span></td>
-                                    <td><span class="tfoot-text">Người tạo</span></td>
-                                    <td><span class="tfoot-text">Thời gian</span></td>
-                                </tr>
-                            </tfoot>
+
                         </table>
                     </div>
                 </div>
             </div>
-            <div class="section" id="paging-wp">
-                <div class="section-detail clearfix">
-                    <p id="desc" class="fl-left">Chọn vào checkbox để lựa chọn tất cả</p>
-                    <ul id="list-paging" class="fl-right">
-                        <li>
-                            <a href="" title="">
-                                << /a>
-                        </li>
-                        <li>
-                            <a href="" title="">1</a>
-                        </li>
-                        <li>
-                            <a href="" title="">2</a>
-                        </li>
-                        <li>
-                            <a href="" title="">3</a>
-                        </li>
-                        <li>
-                            <a href="" title="">></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>

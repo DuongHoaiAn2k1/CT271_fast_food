@@ -10,11 +10,11 @@ require "inc/header.php";
 
 <link rel="stylesheet" href="public/css/user.css">
 <div id="head-main-page" class="container-fluid">
-  <section class="vh-100" style="background-color: #eee">
+  <section class="vh-100" style="background-color: #fff">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-lg-12 col-xl-11">
-          <div class="card text-black" style="border-radius: 25px">
+          <div class="card text-black" style="border: none; ">
             <div class="card-body p-md-5">
               <div class="row justify-content-center">
                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
@@ -28,7 +28,7 @@ require "inc/header.php";
                       <label class="form-label" for="form3Example1c"><i class="user-icon-login fa fa-user" aria-hidden="true" style="margin-right: 4px"></i></label>
 
                       <div class="form-outline flex-fill mb-0 contain-input">
-                        <input type="text" id="form3Example1c" class="form-control" placeholder="Họ và tên của bạn" name="full_name" />
+                        <input type="text" id="form3Example1c" class="form-control" placeholder="Họ và tên của bạn" name="full_name" value="<?php if (isset($_POST['full_name'])) echo $_POST['full_name'] ?>" />
                       </div>
                     </div>
                     <?php echo form_error('full_name'); ?>
@@ -36,7 +36,7 @@ require "inc/header.php";
                       <label class="form-label" for="form3Example3c"><i class="icon-register fa fa-envelope" aria-hidden="true"></i></label>
 
                       <div class="form-outline flex-fill mb-0 contain-input">
-                        <input type="email" id="form3Example3c" class="form-control" placeholder="Email của bạn" name="email" />
+                        <input type="email" id="form3Example3c" class="form-control" placeholder="Email của bạn" name="email" value="<?php if (isset($_POST['email'])) echo $_POST['email'] ?>" />
                       </div>
                     </div>
                     <?php echo form_error('email'); ?>
@@ -65,7 +65,7 @@ require "inc/header.php";
                       </label>
 
                       <div class="form-outline flex-fill mb-0 contain-input">
-                        <input type="text" id="form3Example4cd" class="form-control" placeholder="Vui lòng nhập số điện thoại" name="phone" />
+                        <input type="text" id="form3Example4cd" class="form-control" placeholder="Vui lòng nhập số điện thoại" name="phone" value="<?php if (isset($_POST['phone'])) echo $_POST['phone'] ?>" />
                       </div>
                     </div>
                     <?php echo form_error('phone'); ?>
@@ -76,7 +76,7 @@ require "inc/header.php";
                       </label>
 
                       <div class="form-outline flex-fill mb-0 contain-input">
-                        <input type="text" id="form3Example4cd" class="form-control" placeholder="Vui lòng nhập địa chỉ" name="address" />
+                        <input type="text" id="form3Example4cd" class="form-control" placeholder="Vui lòng nhập địa chỉ" name="address" value="<?php if (isset($_POST['address'])) echo $_POST['address'] ?>" />
                       </div>
                     </div>
                     <?php echo form_error('address'); ?>

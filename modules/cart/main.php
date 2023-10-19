@@ -79,7 +79,7 @@ require "./inc/header.php";
                                                         </button>
                                                     </div>
                                                     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                        <h6 id="sub-total-<?php echo $item['product_id']; ?>" class="mb-0"><?php echo $item['sub_total'] ?></h6>
+                                                        <h6 id="sub-total-<?php echo $item['product_id']; ?>" class="mb-0"><?php echo currency_format($item['sub_total']) ?></h6>
                                                     </div>
                                                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                         <a id="delete_cart" href="?mod=cart&act=delete_cart&product_id=<?php echo $item['product_id'] ?>" class="text-muted delete_cart"><i class="fas fa-times"></i></a>
@@ -125,7 +125,7 @@ require "./inc/header.php";
 
                                         <div class="d-flex justify-content-between mb-5">
                                             <h5 class="text-uppercase">Tổng tiền</h5>
-                                            <h5 id="total-money"><?php echo isset($_SESSION['cart']['info']) ? $_SESSION['cart']['info']['total_money'] : 0 ?></h5>
+                                            <h5 id="total-money"><?php echo currency_format(isset($_SESSION['cart']['info']) ? $_SESSION['cart']['info']['total_money'] : 0) ?></h5>
                                         </div>
 
                                         <a href="<?php echo isset($_SESSION['is_login']) ? '?mod=cart&act=bill' : '?mod=user&act=login&i=0' ?>" type="button" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">THANH TOÁN</a>

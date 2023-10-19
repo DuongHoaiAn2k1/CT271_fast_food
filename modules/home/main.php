@@ -1,5 +1,4 @@
 <?php
-include "./models/home.php";
 $category = get_list_category();
 $list_product = get_list_product();
 
@@ -106,28 +105,7 @@ require "inc/header.php";
   }
 </style>
 
-<!-- Thêm hộp thoại nổi -->
-<!-- <div id="menu-dialog" class="menu-dialog">
-  <button id="close-button" class="close-button">
-    <i class="fa fa-times" aria-hidden="true"></i>
-  </button>
-  <hr />
-  <div class="contain-box">
-    <div class="menu-header">
-      <h2>DANH MỤC MÓN ĂN</h2>
-    </div>
-    <ul class="menu-list">
-      <li><a href="#">Ưu Đãi</a></li>
-      <li><a href="#">Món Mới</a></li>
-      <li><a href="#">Combo 1 Người</a></li>
-      <li><a href="#">Combo Nhóm</a></li>
-      <li><a href="#">Gà Rán - Gà Quay</a></li>
-      <li><a href="#">Burger - Cơm - Mì Ý</a></li>
-      <li><a href="#">Thức Ăn Nhẹ</a></li>
-      <li><a href="#">Thức Uống & Tráng Miệng</a></li>
-    </ul>
-  </div>
-</div> -->
+
 
 <div id="head-main-page" class="container-fluid mt-5">
   <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
@@ -146,11 +124,7 @@ require "inc/header.php";
 </div>
 
 <div class="container mt-2">
-  <!--   <div class="card card-block mb-2">
-    <h4 class="card-title">Card 1</h4>
-    <p class="card-text">Welcom to bootstrap card styles</p>
-    <a href="#" class="btn btn-primary">Submit</a>
-  </div>   -->
+
   <h1 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">DANH MỤC MÓN ĂN</h1>
   <div class="row">
     <?php foreach ($category as $item) {
@@ -170,11 +144,7 @@ require "inc/header.php";
 </div>
 
 <div class="container mt-2">
-  <!--   <div class="card card-block mb-2">
-    <h4 class="card-title">Card 1</h4>
-    <p class="card-text">Welcom to bootstrap card styles</p>
-    <a href="#" class="btn btn-primary">Submit</a>
-  </div>   -->
+
   <h1 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">CÓ THỂ BẠN SẼ THÍCH NHỮNG MÓN NÀY</h1>
   <div class="row">
     <?php for ($i = 0; $i <= 3; $i++) {
@@ -182,9 +152,9 @@ require "inc/header.php";
       <div class="col-md-3 col-sm-6 mt-3">
         <div class="card card-block">
           <img class="img-menu" src="admin/<?php echo $list_product[$i]['img'] ?>" alt="Photo of sunset">
-          <h4 class="card-title mt-3 mb-3 d-flex justify-content-between"><?php echo $list_product[$i]['product_name'] ?> <span class="contain-price"><?php echo $list_product[$i]['price'] ?></span>
+          <h4 class="card-title mt-3 mb-3 d-flex justify-content-between"><?php echo $list_product[$i]['product_name'] ?> <span class="contain-price"><?php echo currency_format($list_product[$i]['price']) ?></span>
           </h4>
-          <button type="button" class="btn btn-danger btn-rounded" style="background-color: #a23232;">Thêm</button>
+          <button type="button" class="btn btn-danger btn-rounded" style="background-color: #a23232;"><span class="add-cart">Thêm</span></button>
         </div>
       </div>
     <?php
@@ -194,7 +164,7 @@ require "inc/header.php";
 </div>
 
 <?php
-
+// show_array($_COOKIE);
 // show_array($category);
 require "./inc/footer.php";
 

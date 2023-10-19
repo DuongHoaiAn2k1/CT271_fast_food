@@ -29,8 +29,8 @@ try {
 }
 
 //Lay danh sach hoa don
-global $list_bill;
-$order_id = $list_bill[sizeof($list_bill) - 1]['order_id'] + 1;
+
+$order_id = (int) $list_order[sizeof($list_order) - 1]['order_id'] + 1;
 
 $stmt = $pdo->prepare("INSERT INTO chi_tiet_don_hang (product_id, order_id, quantity, price) VALUES (:product_id, :order_id, :quantity, :price)");
 foreach ($_SESSION['cart']['buy'] as $item) {
@@ -41,12 +41,13 @@ foreach ($_SESSION['cart']['buy'] as $item) {
 
     try {
         $stmt->execute();
+        echo '<script>alert("Thanh toán thành công");setTimeout(function(){window.location.href="?";}, 500);</script>';
+        unset($_SESSION['cart']);
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
         exit();
     }
 }
-echo '<script>alert("Thanh toán thành công");setTimeout(function(){window.location.href="?";}, 500);</script>';
 
 // Close the database connection
 $pdo = null;

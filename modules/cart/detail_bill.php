@@ -22,6 +22,7 @@
         <tbody>
             <?php
             $i = 0;
+            $list_order_and_detail = get_orders_and_detail_by_user_id($_SESSION['user_id'], $_GET['order_id']);
             foreach ($list_order_and_detail as $item) {
                 $i++;
                 $list_product = get_product_by_id($item['product_id']);
@@ -55,7 +56,7 @@
                             ?>
                                 <button style="font-size: 12px;" type="button" class="btn btn-success">ĐANG GIAO</button>
                             <?php
-                            } else if ($item['status_order']) {
+                            } else if ($item['status_order'] === 3) {
                             ?>
                                 <button style="font-size: 12px;" type="button" class="btn btn-info">ĐÃ NHẬN</button>
                             <?php
@@ -66,7 +67,8 @@
                             }
                             ?>
                         </td>
-                        <td><button style="font-size: 12px;" type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark">HỦY</button></td>
+                        <td><a href="?mod=cart&act=cancel&order_id=<?php echo $_GET['order_id'] ?>" id="<?php if ($item['status_order'] === 1) echo 'cancel';
+                                                                                                        else echo 'no-cancel'  ?>" style="font-size: 12px;" type="button" class="btn btn-outline-dark  " data-mdb-ripple-color="dark">HỦY</a></td>
                     <?php
                     } else {
                     ?>
@@ -85,5 +87,20 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $("#cancel").click(function(e) {
+            e.preventDefault();
+            const confirmed = confirm("Bạn có chắc chắn muốn hủy đơn hàng?");
+            if (confirmed) {
+                window.location.href = $(this).attr("href");
+            }
+        });
+        $("#no-cancel").click(function(e) {
+            e.preventDefault();
+        })
+    });
+</script>
 
 <?php require "./inc/footer.php" ?>
